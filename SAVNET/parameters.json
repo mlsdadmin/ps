@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountName": {
-      "value": "saone"
+      "value": "sa1"
     },
     "subnets_subnet1_name": {
       "value": "Subnet1"
