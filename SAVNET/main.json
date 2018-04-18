@@ -5,11 +5,11 @@
  "properties": {
    "mode": "Incremental",
    "templateLink": {
-     "uri": "https://urltotemplate.com/linkedtemplate.json",
+     "uri": "https://github.com/mlsdadmin/ps/tree/master/SAVNET/template.json",
      "contentVersion": "1.0.0.0"
    },
    "parametersLink": {
-     "uri": "https://urltotemplate.com/linkedparamtemplate.json",
+     "uri": "https://github.com/mlsdadmin/ps/tree/master/SAVNET/parameters.json",
      "contentVersion": "1.0.0.0"
    }
  }
