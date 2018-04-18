@@ -1,0 +1,16 @@
+{
+ "apiVersion": "2015-01-01",
+ "name": "dbserverLinked",
+ "type": "Microsoft.Resources/deployments",
+ "properties": {
+   "mode": "Incremental",
+   "templateLink": {
+     "uri": "https://urltotemplate.com/linkedtemplate.json",
+     "contentVersion": "1.0.0.0"
+   },
+   "parametersLink": {
+     "uri": "https://urltotemplate.com/linkedparamtemplate.json",
+     "contentVersion": "1.0.0.0"
+   }
+ }
+}

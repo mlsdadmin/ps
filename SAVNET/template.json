@@ -1,0 +1,105 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_vnet1_name": {
+            "type": "String",
+			"metadata": {
+                "description": "VNet name"
+            }
+        },
+		 "virtualNetworks_vnet1_prefix": {
+            "type": "string",
+            "metadata": {
+                "description": "Address prefix"
+            }
+        },
+        "storageAccounts_saone_name": {
+            "type": "String"
+        },
+        "subnets_subnet1_prefix": {
+            "type": "String"
+        },
+		"subnets_subnet1_name": {
+            "type": "String"
+        },
+		"subnets_subnet2_prefix": {
+            "type": "String"
+        },
+        "subnets_subnet2_name": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_vnet1_name')]",
+            "apiVersion": "2018-01-01",
+            "location": "[resourceGroup().location]",
+            "scale": null,
+            "properties": {
+                
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('virtualNetworks_vnet1_prefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[parameters('subnets_subnet1_name')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnets_subnet1_prefix')]",
+                            "serviceEndpoints": []
+                        }
+                    },
+                    {
+                        "name": "[parameters('subnets_subnet2_name')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnets_subnet2_prefix')]",
+                            "serviceEndpoints": []
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false,
+                "enableVmProtection": false
+            },
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_saone_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "northeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Deny"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}
