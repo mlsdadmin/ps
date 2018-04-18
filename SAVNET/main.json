@@ -1,16 +1,24 @@
 {
- "apiVersion": "2015-01-01",
- "name": "VSA",
- "type": "Microsoft.Resources/deployments",
- "properties": {
-   "mode": "Incremental",
-   "templateLink": {
-     "uri": "https://github.com/mlsdadmin/ps/tree/master/SAVNET/template.json",
-     "contentVersion": "1.0.0.0"
-   },
-   "parametersLink": {
-     "uri": "https://github.com/mlsdadmin/ps/tree/master/SAVNET/parameters.json",
-     "contentVersion": "1.0.0.0"
-   }
- }
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+	"resources": [ 
+	{ 
+     "apiVersion": "2015-01-01", 
+     "name": "nestedTemplate", 
+     "type": "Microsoft.Resources/deployments", 
+     "properties": { 
+       "mode": "incremental", 
+       "templateLink": {
+          "uri":"https://github.com/mlsdadmin/ps/tree/master/SAVNET/template.json",
+          "contentVersion":"1.0.0.0"
+       }, 
+       "parametersLink": { 
+          "uri":"https://github.com/mlsdadmin/ps/tree/master/SAVNET/parameters.json",
+          "contentVersion":"1.0.0.0"
+       } 
+     } 
+  } 
+] 
 }
