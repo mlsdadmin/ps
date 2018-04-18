@@ -1,30 +1,30 @@
- {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "variables": {},
-    "resources": [
-        {
-            "apiVersion": "2017-05-10",
-            "name": "linkedTemplate",
-            "type": "Microsoft.Resources/deployments",
-            "properties": {
-                "mode": "incremental",
-                "templateLink": {
-                    "uri": "https://github.com/mlsdadmin/ps/tree/master/SAVNET/template.json",
-                    "contentVersion": "1.0.0.0"
-                },
-				 "parametersLink": {
-					"uri":"https://github.com/mlsdadmin/ps/tree/master/SAVNET/parameters.json",
-					"contentVersion":"1.0.0.0"
-       }
-            }
-        }
-    ],
-    "outputs": {
-        "messageFromLinkedTemplate": {
-            "type": "string",
-            "value": "[reference('linkedTemplate').outputs.greetingMessage.value]"
-        }
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "outputs": {
+    "messageFromLinkedTemplate": {
+      "type": "string",
+      "value": "[reference('linkedTemplate').outputs.greetingMessage.value]"
     }
+  },
+  "parameters": {},
+  "resources": [
+    {
+      "apiVersion": "2017-05-10",
+      "name": "linkedTemplate",
+      "properties": {
+        "mode": "incremental",
+        "templateLink": {
+          "contentVersion": "1.0.0.0",
+          "uri": "https://github.com/mlsdadmin/ps/tree/master/SAVNET/template.json"
+        },
+        "parametersLink": {
+          "contentVersion": "1.0.0.0",
+          "uri": "https://github.com/mlsdadmin/ps/tree/master/SAVNET/parameters.json"
+        }
+      },
+      "type": "Microsoft.Resources/deployments"
+    }
+  ],
+  "variables": {}
 }

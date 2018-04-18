@@ -1,105 +1,104 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "virtualNetworks_vnet1_name": {
-            "type": "String",
-			"metadata": {
-                "description": "VNet name"
-            }
-        },
-		 "virtualNetworks_vnet1_prefix": {
-            "type": "string",
-            "metadata": {
-                "description": "Address prefix"
-            }
-        },
-        "storageAccounts_saone_name": {
-            "type": "String"
-        },
-        "subnets_subnet1_prefix": {
-            "type": "String"
-        },
-		"subnets_subnet1_name": {
-            "type": "String"
-        },
-		"subnets_subnet2_prefix": {
-            "type": "String"
-        },
-        "subnets_subnet2_name": {
-            "type": "String"
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccounts_saone_name": {
+      "type": "string"
     },
-    "variables": {},
-    "resources": [
-        {
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworks_vnet1_name')]",
-            "apiVersion": "2018-01-01",
-            "location": "[resourceGroup().location]",
-            "scale": null,
-            "properties": {
-                
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "[parameters('virtualNetworks_vnet1_prefix')]"
-                    ]
-                },
-                "subnets": [
-                    {
-                        "name": "[parameters('subnets_subnet1_name')]",
-                        "properties": {
-                            "addressPrefix": "[parameters('subnets_subnet1_prefix')]",
-                            "serviceEndpoints": []
-                        }
-                    },
-                    {
-                        "name": "[parameters('subnets_subnet2_name')]",
-                        "properties": {
-                            "addressPrefix": "[parameters('subnets_subnet2_prefix')]",
-                            "serviceEndpoints": []
-                        }
-                    }
-                ],
-                "virtualNetworkPeerings": [],
-                "enableDdosProtection": false,
-                "enableVmProtection": false
-            },
-            "dependsOn": []
+    "subnets_subnet1_name": {
+      "type": "string"
+    },
+    "subnets_subnet1_prefix": {
+      "type": "string"
+    },
+    "subnets_subnet2_name": {
+      "type": "string"
+    },
+    "subnets_subnet2_prefix": {
+      "type": "string"
+    },
+    "virtualNetworks_vnet1_name": {
+      "metadata": {
+        "description": "VNet name"
+      },
+      "type": "string"
+    },
+    "virtualNetworks_vnet1_prefix": {
+      "type": "string",
+      "metadata": {
+        "description": "Address prefix"
+      }
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2018-01-01",
+      "dependsOn": [],
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('virtualNetworks_vnet1_name')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('virtualNetworks_vnet1_prefix')]"
+          ]
         },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "kind": "Storage",
-            "name": "[parameters('storageAccounts_saone_name')]",
-            "apiVersion": "2017-10-01",
-            "location": "northeurope",
-            "tags": {},
-            "scale": null,
+        "enableDdosProtection": false,
+        "enableVmProtection": false,
+        "subnets": [
+          {
+            "name": "[parameters('subnets_subnet1_name')]",
             "properties": {
-                "networkAcls": {
-                    "bypass": "AzureServices",
-                    "virtualNetworkRules": [],
-                    "ipRules": [],
-                    "defaultAction": "Deny"
-                },
-                "supportsHttpsTrafficOnly": false,
-                "encryption": {
-                    "services": {
-                        "file": {
-                            "enabled": true
-                        },
-                        "blob": {
-                            "enabled": true
-                        }
-                    },
-                    "keySource": "Microsoft.Storage"
-                }
+              "addressPrefix": "[parameters('subnets_subnet1_prefix')]",
+              "serviceEndpoints": []
+            }
+          },
+          {
+            "name": "[parameters('subnets_subnet2_name')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnets_subnet2_prefix')]",
+              "serviceEndpoints": []
+            }
+          }
+        ],
+        "virtualNetworkPeerings": []
+      },
+      "scale": null,
+      "type": "Microsoft.Network/virtualNetworks"
+    },
+    {
+      "apiVersion": "2017-10-01",
+      "dependsOn": [],
+      "kind": "Storage",
+      "location": "northeurope",
+      "name": "[parameters('storageAccountName')]",
+      "properties": {
+        "encryption": {
+          "keySource": "Microsoft.Storage",
+          "services": {
+            "blob": {
+              "enabled": true
             },
-            "dependsOn": []
-        }
-    ]
+            "file": {
+              "enabled": true
+            }
+          }
+        },
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "defaultAction": "Deny",
+          "ipRules": [],
+          "virtualNetworkRules": []
+        },
+        "supportsHttpsTrafficOnly": false
+      },
+      "scale": null,
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "tags": {},
+      "type": "Microsoft.Storage/storageAccounts"
+    }
+  ],
+  "variables": {}
 }

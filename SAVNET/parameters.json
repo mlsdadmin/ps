@@ -1,27 +1,27 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "virtualNetworks_vnet1_name": {
-            "value": "VNet1"
-        },
-		"virtualNetworks_vnet1_prefix": {
-			"value": "10.0.0.0/16"
-		},
-        "storageAccounts_saone_name": {
-            "value": "saone"
-        },
-        "subnets_subnet1_prefix": {
-			"value": "10.0.1.0/24"
-		},
-		"subnets_subnet1_name": {
-            "value": "Subnet1"
-        },
-		"subnets_subnet2_prefix": {
-			"value": "10.0.2.0/24"
-			},
-        "subnets_subnet2_name": {
-            "value": "Subnet2"
-        }
+  "parameters": {
+    "storageAccountName": {
+      "value": "saone"
+    },
+    "subnets_subnet1_name": {
+      "value": "Subnet1"
+    },
+    "subnets_subnet1_prefix": {
+      "value": "10.0.1.0/24"
+    },
+    "subnets_subnet2_name": {
+      "value": "Subnet2"
+    },
+    "subnets_subnet2_prefix": {
+      "value": "10.0.2.0/24"
+    },
+    "virtualNetworks_vnet1_name": {
+      "value": "VNet1"
+    },
+    "virtualNetworks_vnet1_prefix": {
+      "value": "10.0.0.0/16"
     }
+  }
 }
