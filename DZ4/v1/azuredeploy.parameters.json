@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-            "value": "iis14"
+            "value": "iis13"
         },
         "vmName": {
-            "value": "iis14"
+            "value": "iis13"
         },
         "vmSize": {
             "value": "Standard_D1_V2"
