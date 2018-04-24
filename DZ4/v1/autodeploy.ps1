@@ -38,10 +38,10 @@ param(
  $deploymentName = "IIS1",
 
  [string]
- $templateFilePath = "https://github.com/mlsdadmin/ps/raw/master/DZ4/v1/azuredeploy.json",
+ $templateFilePath = "azuredeploy.json",
 
  [string]
- $parametersFilePath = "https://github.com/mlsdadmin/ps/raw/master/DZ4/v1/azuredeploy.parameters.json"
+ $parametersFilePath = "azuredeploy.parameters.json"
 )
 
 <#
