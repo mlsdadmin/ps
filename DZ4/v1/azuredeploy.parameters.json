@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-            "value": "iis13"
+            "value": "iis15"
         },
         "vmName": {
-            "value": "iis13"
+            "value": "iis1"
         },
         "vmSize": {
             "value": "Standard_D1_V2"
@@ -26,7 +26,7 @@
            }
          },
         "modulesUrl": {
-            "value": "https://github.com/Azure/azure-quickstart-templates/raw/master/dsc-extension-iis-server-windows-vm/ContosoWebsite.ps1.zip"
+            "value": "https://github.com/mlsdadmin/ps/raw/master/DZ4/v1/ContosoWebsite.ps1.zip"
         },
         "configurationFunction": {
             "value": "ContosoWebsite.ps1\\ContosoWebsite"

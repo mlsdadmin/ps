@@ -29,19 +29,19 @@ param(
  $subscriptionId = "32866635-f6e5-443b-a876-ea4855c548ac",
 
  [string]
- $resourceGroupName = "IIS2",
+ $resourceGroupName = "IIS1",
 
  [string]
  $resourceGroupLocation = "West Europe",
 
  [string]
- $deploymentName = "IIS2",
+ $deploymentName = "IIS1",
 
  [string]
- $templateFilePath = "azuredeploy.json",
+ $templateFilePath = "https://github.com/mlsdadmin/ps/raw/master/DZ4/v1/azuredeploy.json",
 
  [string]
- $parametersFilePath = "azuredeploy.parameters.json"
+ $parametersFilePath = "https://github.com/mlsdadmin/ps/raw/master/DZ4/v1/azuredeploy.parameters.json"
 )
 
 <#
