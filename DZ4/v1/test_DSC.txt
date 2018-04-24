@@ -1,0 +1,46 @@
+Configuration InstallIIS
+
+{
+
+Import-DscResource -ModuleName PSDesiredStateConfiguration
+
+Node localhost
+  {
+    WindowsFeature WebServerRole
+    {
+      Name = "Web-Server"
+      Ensure = "Present"
+    }
+    WindowsFeature WebManagementConsole
+    {
+      Name = "Web-Mgmt-Console"
+      Ensure = "Present"
+    }
+    WindowsFeature ASPNet45
+    {
+      Name = "Web-Asp-Net45"
+      Ensure = "Present"
+    }
+    Script Binding
+		{
+			GetScript = {@{Result = "Binding"}}
+			TestScript = {$false}
+			SetScript ={
+				New-WebBinding -Name "Default Web Site" -IP "*" -Port 8080 -Protocol http					
+			}
+		}
+    Script FW
+		{
+			GetScript = {@{Result = "Binding"}}
+			TestScript = {$false}
+            SetScript = {
+                Set-NetFirewallProfile -All -Enabled False -Verbose
+            }
+        }
+   }
+  
+}
+
+InstallIIS
+
+Start-DscConfiguration -Path .\InstallIIS -Wait -Force -Verbose
