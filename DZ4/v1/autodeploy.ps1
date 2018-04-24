@@ -29,13 +29,13 @@ param(
  $subscriptionId = "32866635-f6e5-443b-a876-ea4855c548ac",
 
  [string]
- $resourceGroupName = "IIS1",
+ $resourceGroupName = "IIS",
 
  [string]
  $resourceGroupLocation = "West Europe",
 
  [string]
- $deploymentName = "IIS1",
+ $deploymentName = "IIS",
 
  [string]
  $templateFilePath = "azuredeploy.json",
