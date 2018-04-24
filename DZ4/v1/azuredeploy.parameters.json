@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-            "value": "iis145"
+            "value": "iis14"
         },
         "vmName": {
-            "value": "iis145"
+            "value": "iis14"
         },
         "vmSize": {
-            "value": "Standard_GS1"
+            "value": "Standard_D1_V2"
         },
         "imageSKU": {
             "value": "2016-Datacenter"
@@ -18,10 +18,15 @@
             "value": "sysadmin"
         },
         "adminPassword": {
-            "value": "Serg_admin1982!"
-        },
+           "reference":  {
+              "keyVault":  {
+                "id":  "/subscriptions/32866635-f6e5-443b-a876-ea4855c548ac/resourceGroups/const/providers/Microsoft.KeyVault/vaults/passwd"
+                },
+              "secretName": "adminPasswd"
+           }
+         },
         "modulesUrl": {
-            "value": "https://github.com/mlsdadmin/ps/raw/master/DZ4/v1/ContosoWebsite.ps1.zip"
+            "value": "https://github.com/Azure/azure-quickstart-templates/raw/master/dsc-extension-iis-server-windows-vm/ContosoWebsite.ps1.zip"
         },
         "configurationFunction": {
             "value": "ContosoWebsite.ps1\\ContosoWebsite"

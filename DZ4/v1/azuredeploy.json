@@ -23,7 +23,7 @@
     },
     "vmSize": {
       "type": "string",
-      "defaultValue": "Standard_GS1",
+      "defaultValue": "Standard_D1_V2",
       "metadata": {
         "description": "Size of the VM"
       }
@@ -60,7 +60,6 @@
     },
     "configurationFunction": {
       "type": "string",
-      "defaultValue": "ContosoWebsite.ps1\\ContosoWebsite",
       "metadata": {
         "description": "DSC configuration function to call"
       }
@@ -120,6 +119,42 @@
         ]
       }
     },
+	    {
+      "name": "IISnsg",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2016-03-30",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "default-allow-rdp",
+            "properties": {
+              "priority": 1000,
+              "sourceAddressPrefix": "*",
+              "protocol": "Tcp",
+              "destinationPortRange": "3389",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*"
+            }
+          },
+          {
+            "name": "allow-http",
+            "properties": {
+              "priority": 1001,
+              "sourceAddressPrefix": "*",
+              "protocol": "Tcp",
+              "destinationPortRange": "8080",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*"
+            }
+          }
+         ]
+      }
+    },
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/networkInterfaces",
@@ -143,7 +178,10 @@
               }
             }
           }
-        ]
+        ],
+		"networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups/', 'IISnsg')]"
+        }
       }
     },
     {
